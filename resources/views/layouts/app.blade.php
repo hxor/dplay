@@ -39,7 +39,7 @@
                 <div class="collapse navbar-collapse" id="app-navbar-collapse">
                     <!-- Left Side Of Navbar -->
                     <ul class="nav navbar-nav">
-                        &nbsp;
+                        <li><a href="{{ route('admin.user.index') }}">User</a></li>
                     </ul>
 
                     <!-- Right Side Of Navbar -->
@@ -47,7 +47,6 @@
                         <!-- Authentication Links -->
                         @if (Auth::guest())
                             <li><a href="{{ route('login') }}">Login</a></li>
-                            <li><a href="{{ route('register') }}">Register</a></li>
                         @else
                             <li class="dropdown">
                                 <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
@@ -92,5 +91,25 @@
             }
         });
     </script>
+    @if (notify()->ready())
+        <script>
+            $(document).ready(function(){
+                swal({
+                    title: "{!! notify()->message() !!}",
+                    text: "{!! notify()->option('text') !!}",
+                    type: "{{ notify()->type() }}",
+                    timer: "{!! notify()->option('timer') !!}"
+                }).then(
+                    function () {},
+                    // handling the promise rejection
+                    function (dismiss) {
+                        if (dismiss === 'timer') {
+                            console.log('I was closed by the timer')
+                        }
+                    }
+                )
+            });
+        </script>
+    @endif
 </body>
 </html>

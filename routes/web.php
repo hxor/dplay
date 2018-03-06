@@ -31,6 +31,11 @@ Route::get('password/reset/{token}', 'Auth\ResetPasswordController@showResetForm
 
 Route::get('/home', 'HomeController@index')->name('home');
 
-Route::group(['prefix' => 'admin', 'as' => 'admin.'], function () {
+Route::group(['prefix' => 'admin', 'as' => 'admin.', 'middleware' => ['auth']], function () {
     Route::get('/', 'HomeController@index')->name('home');
+    Route::resource('user', 'UserController');
+});
+
+Route::group(['prefix' => 'table', 'as' => 'table.', 'middleware' => ['auth']], function () {
+    Route::get('/user', 'UserController@dataTable')->name('user');
 });
