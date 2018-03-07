@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Info;
+use App\Setting;
 use Illuminate\Http\Request;
 
 class HomeController extends Controller
@@ -13,7 +15,15 @@ class HomeController extends Controller
      */
     public function __construct()
     {
-        $this->middleware('auth');
+        $this->middleware('auth', ['only' => 'admin']);
+    }
+
+    public function index()
+    {
+        $info = Info::where('status', 1)->limit(2)->get();
+        $setting = Setting::first();
+
+        return view('welcome', compact('info', 'setting'));
     }
 
     /**
@@ -21,7 +31,7 @@ class HomeController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function admin()
     {
         return view('home');
     }

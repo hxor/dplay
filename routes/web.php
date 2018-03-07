@@ -11,9 +11,7 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/', 'HomeController@index');
 
 // Auth::routes();
 Route::get('login', 'Auth\LoginController@showLoginForm')->name('login');
@@ -29,13 +27,21 @@ Route::get('password/reset', 'Auth\ForgotPasswordController@showLinkRequestForm'
 Route::post('password/reset', 'Auth\ResetPasswordController@reset');
 Route::get('password/reset/{token}', 'Auth\ResetPasswordController@showResetForm')->name('password.reset');
 
-Route::get('/home', 'HomeController@index')->name('home');
+Route::get('/home', 'HomeController@admin')->name('home');
 
 Route::group(['prefix' => 'admin', 'as' => 'admin.', 'middleware' => ['auth']], function () {
     Route::get('/', 'HomeController@index')->name('home');
     Route::resource('user', 'UserController');
+    Route::resource('info', 'InfoController');
+    Route::get('/setting', 'SettingController@index')->name('setting');
+    Route::post('/setting', 'SettingController@store')->name('setting.store');
 });
 
 Route::group(['prefix' => 'table', 'as' => 'table.', 'middleware' => ['auth']], function () {
     Route::get('/user', 'UserController@dataTable')->name('user');
+    Route::get('/info', 'InfoController@dataTable')->name('info');
+});
+
+Route::get('info', function () {
+	echo phpinfo();
 });

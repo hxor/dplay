@@ -22,6 +22,11 @@
                         </tr>           
                     </table>
                 </div>
+                <div class="panel-footer">
+                    <a href="{{ empty($bread['0']) ? url()->previous() : $bread['0']  }}" class="btn btn-white m-l-5">
+                        Back
+                    </a>
+                </div>
             </div>
         </div>
     </div>

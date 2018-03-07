@@ -39,7 +39,10 @@
                 <div class="collapse navbar-collapse" id="app-navbar-collapse">
                     <!-- Left Side Of Navbar -->
                     <ul class="nav navbar-nav">
-                        <li><a href="{{ route('admin.user.index') }}">User</a></li>
+                        @if (!Auth::guest())
+                            <li><a href="{{ route('admin.user.index') }}">User</a></li>
+                            <li><a href="{{ route('admin.info.index') }}">Info</a></li>
+                        @endif
                     </ul>
 
                     <!-- Right Side Of Navbar -->

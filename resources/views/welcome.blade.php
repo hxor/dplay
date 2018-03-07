@@ -22,7 +22,13 @@
         marquee p { 
             white-space:nowrap;
             margin-right: 1000px; 
-        } 
+        }
+        .header-banner-place {
+		  width: 100%;
+		  padding: 40px 0;
+		  background: {{ $setting->color  }};
+		  overflow: hidden;
+		 } 
     </style>
 
 </head>
@@ -37,8 +43,9 @@
 			<div class="header-banner-place">
 				<div class="container-fluid">
 					<a class="navbar-brand" href="index-2.html">
-						<img src="{{ asset('assets/images/logo.png') }}" alt="">
-						<p>Newspaper &amp; Editorial HTML5 Magazine</p>
+						{{-- <img src="{{ asset('assets/images/logo.png') }}" alt=""> --}}
+						<img src="{{ asset($setting->logo) }}" alt="">
+						{{-- <p>Newspaper &amp; Editorial HTML5 Magazine</p> --}}
 					</a>
 
 					<div class="advertisement">
@@ -59,9 +66,6 @@
 
 						<!-- About-box -->
 						<div class="about-box">
-							<div class="title-section">
-								<h1>About Us</h1>
-							</div>
                             <video width="100%" height="100%" autoplay loop>
                               <source src="http://vjs.zencdn.net/v/oceans.mp4" type="video/mp4" />
                               Your browser does not support the video tag.
@@ -79,41 +83,22 @@
 
 							<div class="widget ">
 								<div class="posts-block articles-box">
-                                    <div class="title-section">
-                                        <h1>Category Layout 1</h1>
-                                    </div>
-							
-							         <div class="news-post article-post">
-                                            <div class="row">
-                                                <div class="col-sm-12">
-                                                    <h2><a href="single-post.html">New alternatives are more productive</a></h2>
-                                                    <ul class="post-tags">
-                                                        <li><i class="lnr lnr-user"></i>by <a href="#">John Doe</a></li>
-                                                        <li><a href="#"><i class="lnr lnr-book"></i><span>23 comments</span></a></li>
-                                                        <li><i class="lnr lnr-eye"></i>872 Views</li>
-                                                    </ul>
-                                                    <p>Duis aute irure dolor in reprehenderit in voluptate velit esse
-                                                    cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
-                                                    proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-                                                </div>
-                                            </div>
-                                        </div>
-							         <div class="news-post article-post">
-                                        <div class="row">
-                                            <div class="col-sm-12">
-                                                <h2><a href="single-post.html">New alternatives are more productive</a></h2>
-                                                <ul class="post-tags">
-                                                    <li><i class="lnr lnr-user"></i>by <a href="#">John Doe</a></li>
-                                                    <li><a href="#"><i class="lnr lnr-book"></i><span>23 comments</span></a></li>
-                                                    <li><i class="lnr lnr-eye"></i>872 Views</li>
-                                                </ul>
-                                                <p>Duis aute irure dolor in reprehenderit in voluptate velit esse
-                                                cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
-                                                proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-                                            </div>
-                                        </div>
-                                    </div>			
+                                    
 
+                                    @foreach ($info as $info)
+                                    	<div class="news-post article-post">
+	                                        <div class="row">
+	                                            <div class="col-sm-12">
+	                                                <h2><a href="#">{{ $info->title }}</a></h2>
+	                                                <ul class="post-tags">
+	                                                    <li><i class="lnr lnr-user"></i>by <a href="#">{{ $info->user->name }}</a></li>
+	                                                    <li><i class="lnr lnr-clock"></i>{{ $info->created_at }}</li>
+	                                                </ul>
+	                                                {!! $info->body !!}
+	                                            </div>
+	                                        </div>
+	                                    </div>
+                                    @endforeach
 						          </div>
 							</div>
                             
