@@ -71,7 +71,8 @@ class VideoController extends Controller
      */
     public function edit($id)
     {
-        //
+        $video = Video::findOrFail($id);
+        return view('pages.video.edit', compact('video'));
     }
 
     /**
@@ -83,7 +84,21 @@ class VideoController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $this->validate($request, [
+            'title' => 'required|min:5',
+            'video' => 'required',
+            'status' => 'required'
+        ]);
+
+        $video = Video::findOrFail($id);
+        $video->update($request->all());
+
+        notify()->flash('Done!', 'success', [
+            'timer' => 1500,
+            'text' => 'Updated Successfully',
+        ]);
+        
+        return redirect()->route('admin.video.index');
     }
 
     /**
@@ -94,7 +109,12 @@ class VideoController extends Controller
      */
     public function destroy($id)
     {
-        //
+        if (!Video::destroy($id)) return redirect()->back();
+        notify()->flash('Done!', 'success', [
+            'timer' => 1500,
+            'text' => 'Deleted Successfully',
+        ]);
+        return redirect()->route('admin.video.index');
     }
 
     /**

@@ -14,9 +14,9 @@
                 </div>
 
                 <div class="panel-body">
-                    {!! Form::model($info, ['route' => ['admin.info.update', $info->id], 'method' => 'PUT']) !!}
+                    {!! Form::model($video, ['route' => ['admin.video.update', $video->id], 'method' => 'PUT']) !!}
                     
-                       @include('pages.info._form')
+                       @include('pages.video._form')
                     
                     {!! Form::close() !!}
                 </div>

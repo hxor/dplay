@@ -66,10 +66,15 @@
 
 						<!-- About-box -->
 						<div class="about-box">
-                            <video width="100%" height="100%" autoplay loop>
-                              <source src="{{ $video->video }}" type="video/mp4" />
-                              Your browser does not support the video tag.
-                            </video>
+                            
+                              @if (!empty($video->video))
+                              	<video width="100%" height="100%" autoplay loop>
+                              		<source src="{{ $video->video }}" type="video/mp4" />
+                              		Your browser does not support the video tag.
+                      			</video>
+                      			@else
+								Video Not Found
+                              @endif
 						</div>
 						<!-- End About-box -->
 
