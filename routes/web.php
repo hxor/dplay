@@ -30,9 +30,10 @@ Route::get('password/reset/{token}', 'Auth\ResetPasswordController@showResetForm
 Route::get('/home', 'HomeController@admin')->name('home');
 
 Route::group(['prefix' => 'admin', 'as' => 'admin.', 'middleware' => ['auth']], function () {
-    Route::get('/', 'HomeController@index')->name('home');
+    Route::get('/', 'HomeController@admin')->name('home');
     Route::resource('user', 'UserController');
     Route::resource('info', 'InfoController');
+    Route::resource('video', 'VideoController');
     Route::get('/setting', 'SettingController@index')->name('setting');
     Route::post('/setting', 'SettingController@store')->name('setting.store');
 });
@@ -40,6 +41,7 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.', 'middleware' => ['auth']], 
 Route::group(['prefix' => 'table', 'as' => 'table.', 'middleware' => ['auth']], function () {
     Route::get('/user', 'UserController@dataTable')->name('user');
     Route::get('/info', 'InfoController@dataTable')->name('info');
+    Route::get('/video', 'VideoController@dataTable')->name('video');
 });
 
 Route::get('info', function () {

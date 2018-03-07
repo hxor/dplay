@@ -10,7 +10,7 @@
         <div class="col-md-8 col-md-offset-2">
             <div class="panel panel-default">
                 <div class="panel-heading">
-                    User
+                    Information
                     <a href="{{ route('admin.info.create') }}" class="btn btn-primary pull-right" style="margin-top: -8px;">Create +</a>
                 </div>
 

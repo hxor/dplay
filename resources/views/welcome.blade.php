@@ -40,7 +40,7 @@
 		    ================================================== -->
 		<header class="clearfix">
 
-			<div class="header-banner-place">
+			<div class="header-banner-place" style="padding-bottom: 1px;padding-top: 1px;">
 				<div class="container-fluid">
 					<a class="navbar-brand" href="index-2.html">
 						{{-- <img src="{{ asset('assets/images/logo.png') }}" alt=""> --}}
@@ -67,7 +67,7 @@
 						<!-- About-box -->
 						<div class="about-box">
                             <video width="100%" height="100%" autoplay loop>
-                              <source src="http://vjs.zencdn.net/v/oceans.mp4" type="video/mp4" />
+                              <source src="{{ $video->video }}" type="video/mp4" />
                               Your browser does not support the video tag.
                             </video>
 						</div>

@@ -42,6 +42,8 @@
                         @if (!Auth::guest())
                             <li><a href="{{ route('admin.user.index') }}">User</a></li>
                             <li><a href="{{ route('admin.info.index') }}">Info</a></li>
+                            <li><a href="{{ route('admin.video.index') }}">Video</a></li>
+                            <li><a href="{{ route('admin.setting') }}">Setting</a></li>
                         @endif
                     </ul>
 
