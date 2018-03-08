@@ -34,6 +34,7 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.', 'middleware' => ['auth']], 
     Route::resource('user', 'UserController');
     Route::resource('info', 'InfoController');
     Route::resource('video', 'VideoController');
+    Route::resource('text', 'TextController');
     Route::get('/setting', 'SettingController@index')->name('setting');
     Route::post('/setting', 'SettingController@store')->name('setting.store');
 });
@@ -42,6 +43,7 @@ Route::group(['prefix' => 'table', 'as' => 'table.', 'middleware' => ['auth']], 
     Route::get('/user', 'UserController@dataTable')->name('user');
     Route::get('/info', 'InfoController@dataTable')->name('info');
     Route::get('/video', 'VideoController@dataTable')->name('video');
+    Route::get('/text', 'TextController@dataTable')->name('text');
 });
 
 Route::get('info', function () {

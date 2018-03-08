@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Info;
 use App\Setting;
 use App\Video;
+use App\Text;
 use Illuminate\Http\Request;
 
 class HomeController extends Controller
@@ -24,8 +25,9 @@ class HomeController extends Controller
         $info = Info::where('status', 1)->limit(2)->get();
         $setting = Setting::first();
         $video = Video::where('status', 1)->first();
+        $text = Text::where('status', 1)->get();
 
-        return view('welcome', compact('info', 'setting', 'video'));
+        return view('welcome', compact('info', 'setting', 'video', 'text'));
     }
 
     /**

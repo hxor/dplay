@@ -95,8 +95,10 @@
 	                                        <div class="row">
 	                                            <div class="col-sm-12">
 	                                                <h2><a href="#">{{ $info->title }}</a></h2>
-	                                                <ul class="post-tags">
-	                                                    <li><i class="lnr lnr-user"></i>by <a href="#">{{ $info->user->name }}</a></li>
+	                                                <ul class="post-tags" style="
+    padding-top: 18px;
+">
+	                                                    <li ><i class="lnr lnr-user"></i>by <a href="#">{{ $info->user->name }}</a></li>
 	                                                    <li><i class="lnr lnr-clock"></i>{{ $info->created_at }}</li>
 	                                                </ul>
 	                                                {!! $info->body !!}
@@ -124,7 +126,11 @@
 				<div class="up-footer">
 					<div class="row">
                         <marquee behavior="scroll" direction="left" style="color: white; font-size:28px">
-                            <b>Hello, I am a StackOverflow user.<span> </span> And I Code the Web.</b>
+                        	<b>
+                        		@foreach ($text as $text)
+	                            	{{ $text->text }}.<span> </span>
+	                            @endforeach
+                        	</b>
                         </marquee>
 					</div>
 				</div>
