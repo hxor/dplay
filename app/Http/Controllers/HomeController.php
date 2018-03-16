@@ -24,10 +24,16 @@ class HomeController extends Controller
     {
         $info = Info::where('status', 1)->limit(2)->get();
         $setting = Setting::first();
-        $video = Video::where('status', 1)->first();
+        $video = Video::select('video')->where('status', 1)->get();
+        $data = [];
+        foreach ($video as $video) {
+            $data[] = asset($video->video);
+        }
         $text = Text::where('status', 1)->get();
 
-        return view('welcome', compact('info', 'setting', 'video', 'text'));
+        // return $data;
+
+        return view('welcome', compact('info', 'setting', 'data', 'text'));
     }
 
     /**

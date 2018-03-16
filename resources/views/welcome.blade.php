@@ -26,13 +26,13 @@
         .header-banner-place {
 		  width: 100%;
 		  padding: 40px 0;
-		  background: {{ $setting->color  }};
+		  background: {{ empty($setting->color) ? '#00A7B3' : $setting->color  }};
 		  overflow: hidden;
 		 } 
     </style>
 
 </head>
-<body>
+<body onload="onload();">
 
 	<!-- Container -->
 	<div id="container">
@@ -44,7 +44,7 @@
 				<div class="container-fluid">
 					<a class="navbar-brand" href="index-2.html">
 						{{-- <img src="{{ asset('assets/images/logo.png') }}" alt=""> --}}
-						<img src="{{ asset($setting->logo) }}" alt="">
+						<img src="{{ empty($setting->logo) ? asset('assets/images/logo.png'): asset($setting->logo) }}" alt="">
 						{{-- <p>Newspaper &amp; Editorial HTML5 Magazine</p> --}}
 					</a>
 
@@ -66,15 +66,7 @@
 
 						<!-- About-box -->
 						<div class="about-box">
-                            
-                              @if (!empty($video->video))
-                              	<video width="100%" height="100%" autoplay loop>
-                              		<source src="{{ $video->video }}" type="video/mp4" />
-                              		Your browser does not support the video tag.
-                      			</video>
-                      			@else
-								Video Not Found
-                              @endif
+                            <video id="idle_video" width="1280" height="690" onended="onVideoEnded();"></video>
 						</div>
 						<!-- End About-box -->
 
@@ -95,9 +87,7 @@
 	                                        <div class="row">
 	                                            <div class="col-sm-12">
 	                                                <h2><a href="#">{{ $info->title }}</a></h2>
-	                                                <ul class="post-tags" style="
-    padding-top: 18px;
-">
+	                                                <ul class="post-tags" style="padding-top: 18px;">
 	                                                    <li ><i class="lnr lnr-user"></i>by <a href="#">{{ $info->user->name }}</a></li>
 	                                                    <li><i class="lnr lnr-clock"></i>{{ $info->created_at }}</li>
 	                                                </ul>
@@ -182,28 +172,28 @@
 	<script src="{{ asset('assets/js/script.js') }}"></script>
     
     <script>
-        function clock() {// We create a new Date object and assign it to a variable called "time".
-        var time = new Date(),
-            
-            // Access the "getHours" method on the Date object with the dot accessor.
-            hours = time.getHours(),
-            
-            // Access the "getMinutes" method with the dot accessor.
-            minutes = time.getMinutes(),
-    
-    
-        seconds = time.getSeconds();
+        var video_list      = {!! json_encode($data, JSON_UNESCAPED_SLASHES) !!};
+        var video_index     = 0;
+        var video_player    = null;
 
-        document.querySelectorAll('.clock')[0].innerHTML = harold(hours) + ":" + harold(minutes) + ":" + harold(seconds);
-        
-        function harold(standIn) {
-            if (standIn < 10) {
-            standIn = '0' + standIn
+        function onload(){
+            console.log("body loaded");
+            video_player        = document.getElementById("idle_video");
+            video_player.setAttribute("src", video_list[video_index]);
+            video_player.play();
+        }
+
+        function onVideoEnded(){
+            console.log("video ended");
+            if(video_index < video_list.length - 1){
+                video_index++;
             }
-            return standIn;
+            else{
+                video_index = 0;
+            }
+            video_player.setAttribute("src", video_list[video_index]);
+            video_player.play();
         }
-        }
-        setInterval(clock, 1000);
     </script>
 	
 </body>
