@@ -23,12 +23,11 @@
             white-space:nowrap;
             margin-right: 1000px; 
         }
-        .header-banner-place {
-		  width: 100%;
-		  padding: 40px 0;
-		  background: {{ empty($setting->color) ? '#00A7B3' : $setting->color  }};
-		  overflow: hidden;
-		 } 
+		 .header-banner-place {
+			width: 100%;
+			padding: 40px 0;
+			background: <?= empty($setting->color) ? '#00A7B3' : $setting->color ?>;
+			overflow: hidden; } 
     </style>
 
 </head>
@@ -66,7 +65,7 @@
 
 						<!-- About-box -->
 						<div class="about-box">
-                            <video id="idle_video" width="1280" height="690" onended="onVideoEnded();"></video>
+                            <video id="idle_video" width="1280" height="690" onended="onVideoEnded();" controls></video>
 						</div>
 						<!-- End About-box -->
 
@@ -194,6 +193,28 @@
             video_player.setAttribute("src", video_list[video_index]);
             video_player.play();
         }
+
+		function clock() {
+			var time = new Date(),
+				
+				// Access the "getHours" method on the Date object with the dot accessor.
+				hours = time.getHours(),
+				
+				// Access the "getMinutes" method with the dot accessor.
+				minutes = time.getMinutes(),
+		
+		
+			seconds = time.getSeconds();
+			document.querySelectorAll('.clock')[0].innerHTML = harold(hours) + ":" + harold(minutes) + ":" + harold(seconds);
+			
+			function harold(standIn) {
+				if (standIn < 10) {
+				standIn = '0' + standIn
+				}
+				return standIn;
+			}
+        }
+        setInterval(clock, 1000);
     </script>
 	
 </body>
