@@ -22,7 +22,8 @@ class HomeController extends Controller
 
     public function index()
     {
-        $info = Info::where('status', 1)->limit(2)->get();
+        $graha1 = Info::where('title', 'Graha 1')->where('status', 1)->first();
+        $graha2 = Info::where('title', 'Graha 2')->where('status', 1)->first();
         $setting = Setting::first();
         $video = Video::select('video')->where('status', 1)->get();
         $data = [];
@@ -33,7 +34,7 @@ class HomeController extends Controller
 
         // return $data;
 
-        return view('welcome', compact('info', 'setting', 'data', 'text'));
+        return view('welcome', compact('graha1', 'graha2', 'setting', 'data', 'text'));
     }
 
     /**

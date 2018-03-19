@@ -1,11 +1,11 @@
 <div class="form-group{{ $errors->has('title') ? ' has-error' : '' }}">
-    {!! Form::label('title', 'Judul') !!}
-    {!! Form::text('title', null, ['class' => 'form-control', 'required' => 'required', 'autofocus']) !!}
+    {!! Form::label('title', 'Graha 1') !!}
+    {!! Form::select('title', ['Graha 1' => 'Graha 1', 'Graha 2' => 'Graha 2'], null, ['id' => 'title', 'class' => 'form-control', 'required' => 'required']) !!}
     <small class="text-danger">{{ $errors->first('title') }}</small>
 </div>
 
 <div class="form-group{{ $errors->has('body') ? ' has-error' : '' }}">
-    {!! Form::label('body', 'Isi Informasi') !!}
+    {!! Form::label('body', 'Informasi') !!}
     {!! Form::textarea('body', null, ['class' => 'form-control text-area', 'required' => 'required']) !!}
     <small class="text-danger">{{ $errors->first('body') }}</small>
 </div>

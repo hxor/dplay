@@ -79,22 +79,35 @@
 
 							<div class="widget ">
 								<div class="posts-block articles-box">
-                                    
+									@if ($graha1)
+										<div class="news-post article-post">
+											<div class="row">
+												<div class="col-sm-12">
+													<h2><a href="#">{{ $graha1->title }}</a></h2>
+													<ul class="post-tags" style="padding-top: 18px;">
+														<li><i class="lnr lnr-user"></i>by <a href="#">{{ $graha1->user->name }}</a></li>
+														<li><i class="lnr lnr-clock"></i>{{ $graha1->created_at }}</li>
+													</ul>
+													{!! $graha1->body !!}
+												</div>
+											</div>
+										</div>										
+									@endif
 
-                                    @foreach ($info as $info)
-                                    	<div class="news-post article-post">
-	                                        <div class="row">
-	                                            <div class="col-sm-12">
-	                                                <h2><a href="#">{{ $info->title }}</a></h2>
-	                                                <ul class="post-tags" style="padding-top: 18px;">
-	                                                    <li ><i class="lnr lnr-user"></i>by <a href="#">{{ $info->user->name }}</a></li>
-	                                                    <li><i class="lnr lnr-clock"></i>{{ $info->created_at }}</li>
-	                                                </ul>
-	                                                {!! $info->body !!}
-	                                            </div>
-	                                        </div>
-	                                    </div>
-                                    @endforeach
+									@if ($graha2)
+										<div class="news-post article-post">
+											<div class="row">
+												<div class="col-sm-12">
+													<h2><a href="#">{{ $graha2->title }}</a></h2>
+													<ul class="post-tags" style="padding-top: 18px;">
+														<li><i class="lnr lnr-user"></i>by <a href="#">{{ $graha2->user->name }}</a></li>
+														<li><i class="lnr lnr-clock"></i>{{ $graha2->created_at }}</li>
+													</ul>
+													{!! $graha2->body !!}
+												</div>
+											</div>
+										</div>
+									@endif
 						          </div>
 							</div>
                             
